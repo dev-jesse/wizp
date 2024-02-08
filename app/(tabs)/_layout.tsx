@@ -21,24 +21,6 @@ const Layout = () => {
       <Tabs.Screen
         name='index'
         options={{
-          tabBarLabel: 'Explore',
-          tabBarIcon: ({ size, color }) => (
-            <Ionicons name='search' size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name='whishlists'
-        options={{
-          tabBarLabel: 'Wishlists',
-          tabBarIcon: ({ size, color }) => (
-            <Ionicons name='heart-outline' size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name='trends'
-        options={{
           headerShown: false,
           tabBarLabel: 'Trends',
           tabBarIcon: ({ size, color }) => (
