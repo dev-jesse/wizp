@@ -7,33 +7,33 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
-} from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { useAuth, useUser } from '@clerk/clerk-expo';
-import { defaultStyles } from '@/constants/Styles';
-import { Ionicons } from '@expo/vector-icons';
-import Colors from '@/constants/Colors';
-import { Link } from 'expo-router';
-import * as ImagePicker from 'expo-image-picker';
+} from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { useAuth, useUser } from '@clerk/clerk-expo'
+import { defaultStyles } from '@/constants/Styles'
+import { Ionicons } from '@expo/vector-icons'
+import Colors from '@/constants/Colors'
+import { Link } from 'expo-router'
+import * as ImagePicker from 'expo-image-picker'
 
 const Page = () => {
-  const { signOut, isSignedIn } = useAuth();
-  const { user } = useUser();
-  const [firstName, setFirstName] = useState(user?.firstName);
-  const [lastName, setLastName] = useState(user?.lastName);
-  const [email, setEmail] = useState(user?.emailAddresses[0].emailAddress);
-  const [edit, setEdit] = useState(false);
+  const { signOut, isSignedIn } = useAuth()
+  const { user } = useUser()
+  const [firstName, setFirstName] = useState(user?.firstName)
+  const [lastName, setLastName] = useState(user?.lastName)
+  const [email, setEmail] = useState(user?.emailAddresses[0].emailAddress)
+  const [edit, setEdit] = useState(false)
 
   // Load user data on mount
   useEffect(() => {
     if (!user) {
-      return;
+      return
     }
 
-    setFirstName(user.firstName);
-    setLastName(user.lastName);
-    setEmail(user.emailAddresses[0].emailAddress);
-  }, [user]);
+    setFirstName(user.firstName)
+    setLastName(user.lastName)
+    setEmail(user.emailAddresses[0].emailAddress)
+  }, [user])
 
   // Update Clerk user data
   const onSaveUser = async () => {
@@ -41,13 +41,13 @@ const Page = () => {
       await user?.update({
         firstName: firstName!,
         lastName: lastName!,
-      });
+      })
     } catch (error) {
-      console.log(error);
+      console.log(error)
     } finally {
-      setEdit(false);
+      setEdit(false)
     }
-  };
+  }
 
   // Capture image from camera roll
   // Upload to Clerk as avatar
@@ -57,21 +57,21 @@ const Page = () => {
       allowsEditing: true,
       quality: 0.75,
       base64: true,
-    });
+    })
 
     if (!result.canceled) {
-      const base64 = `data:image/png;base64,${result.assets[0].base64}`;
+      const base64 = `data:image/png;base64,${result.assets[0].base64}`
       user?.setProfileImage({
         file: base64,
-      });
+      })
     }
-  };
+  }
 
   return (
     <SafeAreaView style={defaultStyles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.header}>Profile</Text>
-        <Ionicons name="notifications-outline" size={26} />
+        <Ionicons name='notifications-outline' size={26} />
       </View>
 
       {user && (
@@ -86,26 +86,34 @@ const Page = () => {
                   {firstName} {lastName}
                 </Text>
                 <TouchableOpacity onPress={() => setEdit(true)}>
-                  <Ionicons name="create-outline" size={24} color={Colors.dark} />
+                  <Ionicons
+                    name='create-outline'
+                    size={24}
+                    color={Colors.dark}
+                  />
                 </TouchableOpacity>
               </View>
             )}
             {edit && (
               <View style={styles.editRow}>
                 <TextInput
-                  placeholder="First Name"
+                  placeholder='First Name'
                   value={firstName || ''}
                   onChangeText={setFirstName}
                   style={[defaultStyles.inputField, { width: 100 }]}
                 />
                 <TextInput
-                  placeholder="Last Name"
+                  placeholder='Last Name'
                   value={lastName || ''}
                   onChangeText={setLastName}
                   style={[defaultStyles.inputField, { width: 100 }]}
                 />
                 <TouchableOpacity onPress={onSaveUser}>
-                  <Ionicons name="checkmark-outline" size={24} color={Colors.dark} />
+                  <Ionicons
+                    name='checkmark-outline'
+                    size={24}
+                    color={Colors.dark}
+                  />
                 </TouchableOpacity>
               </View>
             )}
@@ -115,15 +123,25 @@ const Page = () => {
         </View>
       )}
 
-      {isSignedIn && <Button title="Log Out" onPress={() => signOut()} color={Colors.dark} />}
+      {isSignedIn && (
+        <TouchableOpacity
+          onPress={() => signOut()}
+          style={[defaultStyles.btn, { marginHorizontal: 24 }]}
+        >
+          <Text style={defaultStyles.btnText}> Log Out</Text>
+        </TouchableOpacity>
+      )}
       {!isSignedIn && (
-        <Link href={'/(modals)/login'} asChild>
-          <Button title="Log In" color={Colors.dark} />
+        <Link href={'/(modals)/login'} style={{ marginHorizontal: 24 }} asChild>
+          <TouchableOpacity style={defaultStyles.btn}>
+            <Text style={defaultStyles.btnText}>Log In to Start</Text>
+            {/* <Button title='Log In' color={Colors.dark} /> */}
+          </TouchableOpacity>
         </Link>
       )}
     </SafeAreaView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -166,6 +184,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 8,
   },
-});
+})
 
-export default Page;
+export default Page

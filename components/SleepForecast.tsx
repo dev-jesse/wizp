@@ -33,7 +33,7 @@ const SleepForecast = () => {
           <View
             style={[styles.legendBox, { backgroundColor: Colors.secondary }]}
           ></View>
-          <Text style={styles.legendText}>Actual Time</Text>
+          <Text style={styles.legendText}>Forecasted Time</Text>
         </View>
       </View>
       <LineChart
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   legendContainer: { paddingBottom: 16, flexDirection: 'row', gap: 30 },
   legendLabelContainer: { flexDirection: 'row', gap: 8 },
   legendBox: { backgroundColor: Colors.primary, width: 15, height: 15 },
-  legendText: {},
+  legendText: { fontFamily: 'mon' },
 })
 
 export default SleepForecast
