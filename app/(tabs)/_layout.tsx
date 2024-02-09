@@ -31,6 +31,7 @@ const Layout = () => {
       <Tabs.Screen
         name='logs'
         options={{
+          headerShown: false,
           tabBarLabel: 'Logs',
           tabBarIcon: ({ size, color }) => (
             <MaterialIcons name='date-range' size={size} color={color} />

@@ -11,8 +11,10 @@ import {
   View,
 } from 'react-native'
 import { BarChart } from 'react-native-gifted-charts'
+import { useAuth } from '@clerk/clerk-expo'
 
 const Page = () => {
+  const { isSignedIn } = useAuth()
   const barData = [
     { value: 16, label: 'M' },
     { value: 12, label: 'T' },
@@ -23,15 +25,32 @@ const Page = () => {
     { value: 14, label: 'S' },
   ]
 
+  if (!isSignedIn) {
+    return (
+      <SafeAreaView style={defaultStyles.container}>
+        <View style={styles.headerContainer}>
+          <Text style={styles.header}>Trends</Text>
+        </View>
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
+          <Text style={{ fontFamily: 'mon' }}>
+            To start using the application, please sign in or register.
+          </Text>
+        </View>
+      </SafeAreaView>
+    )
+  }
+
   return (
     <SafeAreaView style={defaultStyles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.header}>Trends</Text>
       </View>
       <View style={styles.dateRangeHolder}>
-        <TouchableOpacity>
+        {/* <TouchableOpacity>
           <Text style={styles.dateRangeText}>1D</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity>
           <Text style={[styles.dateRangeText, { color: Colors.primary }]}>
             1W

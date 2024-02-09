@@ -4,21 +4,21 @@ import Colors from '@/constants/Colors'
 const SleepForecast = () => {
   const data1 = [
     { value: 55, label: 'M' },
-    { value: 23, label: 'T' },
+    { value: 13, label: 'T' },
     { value: 50, label: 'W' },
     { value: 40, label: 'T' },
     { value: 18, label: 'F' },
     { value: 38, label: 'S' },
-    { value: 32, label: 'S' },
+    { value: 36, label: 'S' },
   ]
   const data2 = [
     { value: 50, label: 'M' },
     { value: 10, label: 'T' },
     { value: 45, label: 'W' },
-    { value: 30, label: 'T' },
-    { value: 45, label: 'F' },
-    { value: 18, label: 'S' },
-    { value: 18, label: 'S' },
+    { value: 43, label: 'T' },
+    { value: 20, label: 'F' },
+    { value: 40, label: 'S' },
+    { value: 45, label: 'S' },
   ]
   return (
     <View>

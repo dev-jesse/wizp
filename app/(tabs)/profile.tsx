@@ -71,7 +71,7 @@ const Page = () => {
     <SafeAreaView style={defaultStyles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.header}>Profile</Text>
-        <Ionicons name='notifications-outline' size={26} />
+        {/* <Ionicons name='notifications-outline' size={26} /> */}
       </View>
 
       {user && (

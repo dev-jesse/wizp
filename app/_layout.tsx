@@ -93,6 +93,18 @@ function RootLayoutNav() {
           ),
         }}
       />
+      <Stack.Screen
+        name='(modals)/calendar'
+        options={{
+          presentation: 'modal',
+          title: '',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <Ionicons name='close-outline' size={28} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
       <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
       <Stack.Screen name='listing/[id]' options={{ headerTitle: '' }} />
       <Stack.Screen
