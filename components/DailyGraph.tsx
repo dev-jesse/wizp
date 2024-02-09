@@ -193,6 +193,7 @@ const Page = ({ date }) => {
     {
       value: 1,
       frontColor: '#006DFF',
+      label: '23:30',
     },
     {
       value: 1,
@@ -262,7 +263,6 @@ const Page = ({ date }) => {
           barWidth={3.1}
           yAxisTextStyle={{ fontFamily: 'mon-sb' }}
           horizontalRulesStyle={{ fontFamily: 'mon-sb' }}
-          initialSpacing={10}
           spacing={5}
           maxValue={1}
           noOfSections={1}
