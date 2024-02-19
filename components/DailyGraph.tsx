@@ -193,7 +193,7 @@ const Page = ({ date }) => {
     {
       value: 1,
       frontColor: '#006DFF',
-      label: '23:30',
+      label: '23:00',
     },
     {
       value: 1,
